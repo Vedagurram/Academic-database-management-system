@@ -1,0 +1,6 @@
+C:\Users\usersanjeev\Downloads\ADMS\obj\Debug\ADMS.csproj.AssemblyReference.cache
+C:\Users\usersanjeev\Downloads\ADMS\obj\Debug\ADMS.csproj.SuggestedBindingRedirects.cache
+C:\Users\usersanjeev\Downloads\ADMS\obj\Debug\safeprojectname.Form1.resources
+C:\Users\usersanjeev\Downloads\ADMS\obj\Debug\$safeprojectname$.Properties.Resources.resources
+C:\Users\usersanjeev\Downloads\ADMS\obj\Debug\ADMS.csproj.GenerateResource.cache
+C:\Users\usersanjeev\Downloads\ADMS\obj\Debug\ADMS.csproj.CoreCompileInputs.cache
