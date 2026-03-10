@@ -1,0 +1,115 @@
+CREATE TABLE dept(
+  dept_id VARCHAR(4) PRIMARY KEY,
+  dept_name VARCHAR(50)
+);
+
+CREATE TABLE courses(
+  course_id INT PRIMARY KEY,
+  name VARCHAR(100),
+  dept_id VARCHAR(4),
+  sem INT,
+  credit INT,
+  FOREIGN KEY(dept_id) REFERENCES dept(dept_id)
+);
+
+CREATE TABLE teacher(
+  name VARCHAR(75),
+  teacher_id INT PRIMARY KEY,
+  DOB DATE,
+  dept_id VARCHAR(4),
+  course_id INT,
+  FOREIGN KEY(dept_id) REFERENCES dept(dept_id),
+  FOREIGN KEY(course_id) REFERENCES courses(course_id)
+);
+
+CREATE TABLE student(
+  name VARCHAR(75),
+  reg_no INT PRIMARY KEY,
+  DOB DATE,
+  dept_id VARCHAR(4),
+  sem INT,
+  section VARCHAR(1),
+  TG INT,
+  FOREIGN KEY(dept_id) REFERENCES dept(dept_id),
+  FOREIGN KEY(TG) REFERENCES teacher(teacher_id)
+);
+
+CREATE TABLE enroll(
+  course_id INT,
+  reg_no INT,
+  PRIMARY KEY(course_id, reg_no),
+  FOREIGN KEY(course_id) REFERENCES courses(course_id),
+  FOREIGN KEY(reg_no) REFERENCES student(reg_no)
+);
+
+CREATE TABLE attendance(
+  reg_no INT,
+  course_id INT,
+  tot_classes INT,
+  absent INT,
+  PRIMARY KEY(reg_no, course_id),
+  FOREIGN KEY(reg_no) REFERENCES student(reg_no),
+  FOREIGN KEY(course_id) REFERENCES courses(course_id)
+);
+
+create table grades(
+course_id int,
+reg_no int,
+grade varchar(1),
+ PRIMARY KEY(reg_no, course_id),
+  FOREIGN KEY(reg_no) REFERENCES student(reg_no),
+  FOREIGN KEY(course_id) REFERENCES courses(course_id)
+);
+
+INSERT INTO student(name, reg_no, DOB,dept_id, sem, section, TG)
+VALUES
+    ('Veda', 1001, '2001-01-01','CSE', 3, 'A', 5001),
+    ('Shreyas', 1002, '2001-02-01','CSE', 3, 'A', 5002),
+    ('sanjeev', 1003, '2001-03-01','EEE', 3, 'B', 5003),
+    ('Anirudh', 1004, '2001-04-01','EEE', 3, 'B', 5004),
+    ('Akshaya', 1005, '2001-05-01','ME', 3, 'C', 5005);
+
+INSERT INTO teacher(name, teacher_id, DOB, dept_id, course_id) VALUES
+('Samantha', 5001, '1985-03-14','CSE', 1),
+('Divya', 5002, '1979-11-21','ECE', 2),
+('Shreya', 5003, '1983-08-08','CSE', 3),
+('Raam', 5004, '1977-06-30','ME', 4),
+('Nishta', 5005, '1981-01-15','CSE', 5);
+
+
+INSERT INTO enroll(course_id, reg_no) VALUES
+(1, 1001),
+(2, 1002),
+(3, 1003),
+(1, 1004),
+(2, 1005);
+
+
+INSERT INTO courses (course_id, name, dept_id, sem,credit) VALUES
+(1, 'Database Systems', 'CSE', 3, 4),
+(2, 'Operating Systems', 'CSE', 4, 4),
+(3, 'Algorithms', 'CSE', 3, 4),
+(4, 'Software Engineering', 'CSE', 5, 3),
+(5, 'Computer Networks', 'CSE', 4, 4);
+
+INSERT INTO attendance (reg_no, course_id, tot_classes, absent) VALUES
+(1001, 1, 20, 3),
+(1002, 1, 20, 4),
+(1003, 1, 20, 2),
+(1004, 2, 20, 1),
+(1005, 2, 20, 0);
+
+INSERT INTO dept (dept_id, dept_name) VALUES
+('CSE', 'Computer Science and Engineering'),
+('ECE', 'Electronics and Communication Engineering'),
+('ME', 'Mechanical Engineering'),
+('CE', 'Civil Engineering'),
+('EEE', 'Electrical and Electronics Engineering');
+
+insert into grades values 
+(1, 1001, 'B'),
+(2, 1002, 'A'),
+(3, 1003, 'C'),
+(1, 1004, 'A'),
+(2, 1005, 'B');
+
